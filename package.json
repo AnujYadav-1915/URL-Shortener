@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "nanoid": "^5.1.9",
+    "react-icons": "^5.6.0"
+  }
+}

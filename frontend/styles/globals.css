@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1a1832 0%, #2d2a4a 100%);
+  color: #fff;
+}
+
+.neon {
+  text-shadow: 0 0 8px #7f5fff, 0 0 16px #00e6ff;
+}
+
+.card {
+  @apply bg-[#232046] rounded-xl shadow-lg p-6;
+}
