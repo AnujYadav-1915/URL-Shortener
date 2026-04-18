@@ -43,15 +43,15 @@ const plans = [
 export default function Pricing() {
   return (
     <Section title="Pricing">
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="flex flex-wrap justify-center gap-8 animate-fade-in">
         {plans.map(plan => (
-          <div key={plan.name} className={`card flex flex-col items-center w-72 ${plan.highlight ? 'border-2 border-blue-400 scale-105' : ''}`}>
+          <div key={plan.name} className={`card flex flex-col items-center w-72 ${plan.highlight ? 'border-2 border-blue-400 scale-105 shadow-xl' : ''}`} style={{ transition: 'transform 0.2s' }}>
             <div className="text-2xl font-bold mb-2">{plan.name}</div>
             <div className="text-3xl font-extrabold mb-4">{plan.price}</div>
             <ul className="mb-4 text-left w-full list-disc list-inside">
               {plan.features.map(f => <li key={f}>{f}</li>)}
             </ul>
-            <a href={plan.name === 'Business' ? '/contact' : '/signup'} className="bg-gradient-to-r from-purple-500 to-blue-500 neon px-4 py-2 rounded text-white font-bold w-full text-center">{plan.cta}</a>
+            <a href={plan.name === 'Business' ? '/contact' : '/signup'} className="bg-gradient-to-r from-purple-500 to-blue-500 neon px-4 py-2 rounded text-white font-bold w-full text-center hover:scale-105 transition-transform">{plan.cta}</a>
           </div>
         ))}
       </div>
