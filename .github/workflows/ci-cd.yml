@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies (backend)
         run: |
           cd backend
-          yarn install --frozen-lockfile
+          npm ci
       - name: Build frontend
         run: |
           cd frontend
@@ -45,11 +45,11 @@ jobs:
       - name: Build backend
         run: |
           cd backend
-          yarn build
+          npm run build
       - name: Run backend tests
         run: |
           cd backend
-          yarn test || true
+          npm test || true
       - name: Run frontend tests
         run: |
           cd frontend
@@ -61,4 +61,4 @@ jobs:
       - name: Lint backend
         run: |
           cd backend
-          yarn lint
+          npm run lint
