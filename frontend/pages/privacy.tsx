@@ -28,7 +28,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Your Rights</h2>
             <p className="text-sm text-[#a5a0c8] leading-relaxed">
-              Under GDPR and similar regulations, you have the right to access, export, and delete your data at any time. You can do this from your Account Settings page, or by contacting us at <a href="mailto:privacy@neonshort.com" className="text-[#7f5fff] hover:text-[#00e6ff] transition-colors">privacy@neonshort.com</a>.
+              Under GDPR and similar regulations, you have the right to access, export, and delete your data at any time. You can do this from your Account Settings page, or by contacting us at <a href="mailto:anuj11112003@gmail.com" className="text-[#7f5fff] hover:text-[#00e6ff] transition-colors">anuj11112003@gmail.com</a>.
             </p>
           </section>
 

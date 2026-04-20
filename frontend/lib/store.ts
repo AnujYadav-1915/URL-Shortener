@@ -21,7 +21,12 @@ export interface Link {
   expiryDate?: string;
   expiryClicks?: number;
   password?: string;
+  tags: string[];
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
   deleted: boolean;
+  enabled: boolean;
 }
 
 export interface AnalyticsEvent {
@@ -37,7 +42,8 @@ export interface AnalyticsEvent {
 // Global store (persists across API calls in same server instance)
 const globalStore = globalThis as any;
 
-if (!globalStore.__neonshort_users) {
+if (!globalStore.__neonshort_init) {
+  globalStore.__neonshort_init = true;
   globalStore.__neonshort_users = new Map<string, User>();
   globalStore.__neonshort_links = new Map<string, Link>();
   globalStore.__neonshort_analytics = [] as AnalyticsEvent[];
@@ -47,20 +53,23 @@ if (!globalStore.__neonshort_users) {
   const demoUserId = 'demo-user-001';
   globalStore.__neonshort_users.set(demoUserId, {
     id: demoUserId,
-    name: 'Demo User',
+    name: 'Anuj Yadav',
     email: 'demo@neonshort.com',
     password: 'demo123',
-    plan: 'free',
-    createdAt: new Date().toISOString(),
+    plan: 'pro' as const,
+    createdAt: new Date(Date.now() - 90 * 86400000).toISOString(),
   });
 
-  // Seed some demo links
+  // Seed demo links
   const demoLinks = [
-    { shortId: 'neon1a', url: 'https://github.com', clickCount: 142 },
-    { shortId: 'ggl2b', url: 'https://google.com', clickCount: 89 },
-    { shortId: 'yt3c', url: 'https://youtube.com', clickCount: 234 },
-    { shortId: 'tw4d', url: 'https://twitter.com', clickCount: 67 },
-    { shortId: 'li5e', url: 'https://linkedin.com', clickCount: 45 },
+    { shortId: 'github', url: 'https://github.com', clickCount: 1427, tags: ['dev', 'social'] },
+    { shortId: 'google', url: 'https://google.com', clickCount: 892, tags: ['search'] },
+    { shortId: 'ytube', url: 'https://youtube.com', clickCount: 2341, tags: ['social', 'video'] },
+    { shortId: 'twit', url: 'https://twitter.com', clickCount: 673, tags: ['social'] },
+    { shortId: 'lnkdn', url: 'https://linkedin.com', clickCount: 458, tags: ['professional', 'social'] },
+    { shortId: 'react', url: 'https://react.dev', clickCount: 312, tags: ['dev'] },
+    { shortId: 'nxtjs', url: 'https://nextjs.org', clickCount: 567, tags: ['dev', 'framework'] },
+    { shortId: 'figma', url: 'https://figma.com', clickCount: 234, tags: ['design'] },
   ];
 
   demoLinks.forEach((dl, i) => {
@@ -70,19 +79,21 @@ if (!globalStore.__neonshort_users) {
       shortId: dl.shortId,
       url: dl.url,
       clickCount: dl.clickCount,
-      createdAt: new Date(Date.now() - (i * 86400000)).toISOString(),
+      createdAt: new Date(Date.now() - (i * 3 + 1) * 86400000).toISOString(),
+      tags: dl.tags,
       deleted: false,
+      enabled: true,
     });
   });
 
-  // Seed analytics
+  // Seed rich analytics (30 days)
   const countries = ['US', 'IN', 'UK', 'DE', 'JP', 'BR', 'CA', 'AU', 'FR', 'KR'];
   const devices = ['desktop', 'mobile', 'tablet'];
   const browsers = ['Chrome', 'Safari', 'Firefox', 'Edge'];
-  const referrers = ['twitter.com', 'facebook.com', 'linkedin.com', 'direct', 'google.com'];
+  const referrers = ['twitter.com', 'facebook.com', 'linkedin.com', 'direct', 'google.com', 'reddit.com'];
 
   for (let day = 0; day < 30; day++) {
-    const eventsPerDay = Math.floor(Math.random() * 20) + 5;
+    const eventsPerDay = Math.floor(Math.random() * 30) + 10;
     for (let j = 0; j < eventsPerDay; j++) {
       const link = demoLinks[Math.floor(Math.random() * demoLinks.length)];
       globalStore.__neonshort_analytics.push({

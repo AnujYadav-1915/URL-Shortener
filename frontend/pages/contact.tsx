@@ -35,17 +35,40 @@ export default function Contact() {
             <input type="email" required placeholder="you@example.com" className="input-field" />
           </div>
           <div>
+            <label className="text-xs text-[#a5a0c8] mb-1.5 block">Subject</label>
+            <select className="input-field" required>
+              <option value="">Select a topic</option>
+              <option value="general">General Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="billing">Billing Question</option>
+              <option value="enterprise">Enterprise Plan</option>
+              <option value="bug">Bug Report</option>
+              <option value="feature">Feature Request</option>
+            </select>
+          </div>
+          <div>
             <label className="text-xs text-[#a5a0c8] mb-1.5 block">Message</label>
             <textarea required placeholder="How can we help you?" className="input-field !h-32 resize-none" />
           </div>
           <button type="submit" disabled={sending} className="btn-primary w-full !py-3.5 mt-2">
-            {sending ? 'Sending...' : 'Send Message →'}
+            {sending ? (
+              <span className="flex items-center justify-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Sending...
+              </span>
+            ) : 'Send Message →'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-[#a5a0c8] mt-6">
-          Or email us at <a href="mailto:support@neonshort.com" className="text-[#7f5fff] hover:text-[#00e6ff] transition-colors">support@neonshort.com</a>
-        </p>
+        <div className="text-center mt-8 space-y-2">
+          <p className="text-sm text-[#a5a0c8]">
+            Or email us directly at{' '}
+            <a href="mailto:anuj11112003@gmail.com" className="text-[#7f5fff] hover:text-[#00e6ff] transition-colors font-medium">
+              anuj11112003@gmail.com
+            </a>
+          </p>
+          <p className="text-xs text-[#a5a0c8]/50">We typically respond within 24 hours</p>
+        </div>
       </motion.div>
     </main>
   );
