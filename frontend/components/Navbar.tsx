@@ -1,71 +1,65 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
+    
+    // Check auth state
     const token = localStorage.getItem('token');
     if (token) {
       fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
         .then(r => r.json())
-        .then(data => { if (data.user) setUser(data.user); })
-        .catch(() => {});
+        .then(data => { if (data.user) setUser(data.user); });
     }
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [router.pathname]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    router.push('/');
-  };
-
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/contact', label: 'Contact' },
+    { label: 'Home', href: '/' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Contact', href: '/contact' },
   ];
 
+  const handleMobileClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#0d0b1a]/90 backdrop-blur-xl border-b border-[#7f5fff]/10 shadow-lg shadow-[#7f5fff]/5'
-          : 'bg-transparent'
-      }`}
-    >
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'py-3 bg-[#0a051e]/80 backdrop-blur-xl border-b border-[#7f5fff]/10 shadow-2xl' : 'py-6 bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl">⚡</span>
-            <span className="text-xl font-bold font-heading tracking-tight">
-              <span className="gradient-text">Neon</span>
-              <span className="text-white">Short</span>
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#7f5fff] to-[#00e6ff] rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <img src="/logo.png" alt="Vynkify Logo" className="w-12 h-12 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            </div>
+            <span className="text-2xl font-black font-heading tracking-tight">
+              <span className="gradient-text">Vynkify</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map(link => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  router.pathname === link.href
-                    ? 'text-white bg-[#7f5fff]/15'
-                    : 'text-[#a5a0c8] hover:text-white hover:bg-white/5'
+                className={`text-sm font-bold uppercase tracking-widest transition-all duration-200 ${
+                  router.pathname === link.href ? 'text-[#7f5fff] border-b-2 border-[#7f5fff] pb-1' : 'text-[#a5a0c8] hover:text-white'
                 }`}
               >
                 {link.label}
@@ -73,94 +67,69 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop Auth */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Auth Buttons */}
+          <div className="hidden md:flex items-center gap-6">
             {user ? (
-              <>
-                <Link
-                  href="/dashboard"
-                  className="btn-primary text-sm !py-2.5 !px-5"
-                >
-                  Dashboard
-                </Link>
-                <div className="relative group">
-                  <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#7f5fff] to-[#00e6ff] flex items-center justify-center text-white text-xs font-bold">
-                      {user.name.charAt(0).toUpperCase()}
-                    </div>
-                    <span className="text-sm text-[#a5a0c8]">{user.name}</span>
-                  </button>
-                  <div className="absolute right-0 top-full mt-1 w-48 card !p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <Link href="/account" className="block px-3 py-2 text-sm rounded-lg hover:bg-white/5 transition-colors">Account Settings</Link>
-                    <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-red-500/10 text-red-400 transition-colors">Sign Out</button>
-                  </div>
-                </div>
-              </>
+              <Link href="/dashboard" className="btn-primary !py-3 !px-8 text-xs font-bold uppercase tracking-widest flex items-center gap-2 !rounded-xl">
+                Dashboard <span className="opacity-50">→</span>
+              </Link>
             ) : (
               <>
-                <Link href="/login" className="text-sm text-[#a5a0c8] hover:text-white transition-colors px-4 py-2">
-                  Sign In
+                <Link href="/login" className="text-xs font-bold uppercase tracking-widest text-[#a5a0c8] hover:text-white transition-colors">
+                  Login
                 </Link>
-                <Link href="/signup" className="btn-primary text-sm !py-2.5 !px-5">
-                  Get Started Free
+                <Link href="/signup" className="btn-primary !py-3 !px-8 text-xs font-bold uppercase tracking-widest !rounded-xl shadow-lg shadow-[#7f5fff]/20">
+                  Get Started
                 </Link>
               </>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-3 rounded-2xl bg-white/5 text-white hover:bg-white/10 transition-all"
           >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 7.5 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -7.5 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
-            />
+            {isMobileMenuOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0d0b1a]/95 backdrop-blur-xl border-t border-[#7f5fff]/10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-[#0a051e] border-b border-[#7f5fff]/10 overflow-hidden shadow-2xl"
           >
-            <div className="px-4 py-4 flex flex-col gap-2">
+            <div className="px-6 py-10 space-y-6">
               {navLinks.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-[#a5a0c8] hover:text-white hover:bg-white/5 transition-all"
+                <button
+                  key={link.label}
+                  onClick={() => handleMobileClick(link.href)}
+                  className="block w-full text-left text-2xl font-bold text-[#a5a0c8] hover:text-white"
                 >
                   {link.label}
-                </Link>
+                </button>
               ))}
-              <hr className="border-[#7f5fff]/10 my-2" />
-              {user ? (
-                <>
-                  <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="btn-primary text-center text-sm">Dashboard</Link>
-                  <button onClick={handleLogout} className="px-4 py-3 text-sm text-red-400 text-left hover:bg-red-500/10 rounded-lg transition-colors">Sign Out</button>
-                </>
-              ) : (
-                <>
-                  <Link href="/login" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm text-[#a5a0c8] hover:text-white transition-colors">Sign In</Link>
-                  <Link href="/signup" onClick={() => setMenuOpen(false)} className="btn-primary text-center text-sm">Get Started Free</Link>
-                </>
-              )}
+              <div className="pt-6 flex flex-col gap-4">
+                {user ? (
+                  <button onClick={() => handleMobileClick('/dashboard')} className="btn-primary text-center !py-4">
+                    Dashboard
+                  </button>
+                ) : (
+                  <>
+                    <button onClick={() => handleMobileClick('/login')} className="btn-secondary text-center !py-4">
+                      Login
+                    </button>
+                    <button onClick={() => handleMobileClick('/signup')} className="btn-primary text-center !py-4">
+                      Get Started
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </motion.div>
         )}

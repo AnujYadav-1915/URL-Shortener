@@ -1,12 +1,11 @@
-// In-memory data store for the URL shortener
-// In production, replace with PostgreSQL/Redis
+import { v4 as uuidv4 } from 'uuid';
 
 export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
-  plan: 'free' | 'pro' | 'business';
+  password?: string;
+  plan: string;
   createdAt: string;
 }
 
@@ -15,18 +14,17 @@ export interface Link {
   userId: string;
   shortId: string;
   url: string;
-  customAlias?: string;
   clickCount: number;
   createdAt: string;
-  expiryDate?: string;
-  expiryClicks?: number;
+  deleted: boolean;
+  enabled?: boolean;
+  tags?: string[];
   password?: string;
-  tags: string[];
+  expiryDate?: string;
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
-  deleted: boolean;
-  enabled: boolean;
+  expiryClicks?: number;
 }
 
 export interface AnalyticsEvent {
@@ -39,99 +37,78 @@ export interface AnalyticsEvent {
   referrer: string;
 }
 
-// Global store (persists across API calls in same server instance)
+// In-memory store persistent across hot-reloads in dev
 const globalStore = globalThis as any;
 
-if (!globalStore.__neonshort_init) {
-  globalStore.__neonshort_init = true;
-  globalStore.__neonshort_users = new Map<string, User>();
-  globalStore.__neonshort_links = new Map<string, Link>();
-  globalStore.__neonshort_analytics = [] as AnalyticsEvent[];
-  globalStore.__neonshort_sessions = new Map<string, string>(); // token -> userId
+if (!globalStore.__vynkify_init) {
+  globalStore.__vynkify_init = true;
+  globalStore.__vynkify_users = new Map<string, User>();
+  globalStore.__vynkify_links = new Map<string, Link>();
+  globalStore.__vynkify_analytics = [] as AnalyticsEvent[];
+  globalStore.__vynkify_sessions = new Map<string, string>(); // token -> userId
 
   // Seed demo data
-  const demoUserId = 'demo-user-001';
-  globalStore.__neonshort_users.set(demoUserId, {
+  const demoUserId = 'demo-user-id';
+  globalStore.__vynkify_users.set(demoUserId, {
     id: demoUserId,
     name: 'Anuj Yadav',
-    email: 'demo@neonshort.com',
+    email: 'demo@vynkify.com',
     password: 'demo123',
-    plan: 'pro' as const,
-    createdAt: new Date(Date.now() - 90 * 86400000).toISOString(),
+    plan: 'pro',
+    createdAt: new Date().toISOString(),
   });
 
-  // Seed demo links
   const demoLinks = [
-    { shortId: 'github', url: 'https://github.com', clickCount: 1427, tags: ['dev', 'social'] },
-    { shortId: 'google', url: 'https://google.com', clickCount: 892, tags: ['search'] },
-    { shortId: 'ytube', url: 'https://youtube.com', clickCount: 2341, tags: ['social', 'video'] },
-    { shortId: 'twit', url: 'https://twitter.com', clickCount: 673, tags: ['social'] },
-    { shortId: 'lnkdn', url: 'https://linkedin.com', clickCount: 458, tags: ['professional', 'social'] },
-    { shortId: 'react', url: 'https://react.dev', clickCount: 312, tags: ['dev'] },
-    { shortId: 'nxtjs', url: 'https://nextjs.org', clickCount: 567, tags: ['dev', 'framework'] },
-    { shortId: 'figma', url: 'https://figma.com', clickCount: 234, tags: ['design'] },
+    { shortId: 'vynk-1', url: 'https://github.com/AnujYadav-1915/URL-Shortener' },
+    { shortId: 'twitter', url: 'https://x.com/anujyadav1915' },
+    { shortId: 'linkedin', url: 'https://www.linkedin.com/in/anujyadav1915/' },
   ];
 
-  demoLinks.forEach((dl, i) => {
-    globalStore.__neonshort_links.set(dl.shortId, {
-      id: `link-${i}`,
+  demoLinks.forEach(dl => {
+    globalStore.__vynkify_links.set(dl.shortId, {
+      id: uuidv4(),
       userId: demoUserId,
       shortId: dl.shortId,
       url: dl.url,
-      clickCount: dl.clickCount,
-      createdAt: new Date(Date.now() - (i * 3 + 1) * 86400000).toISOString(),
-      tags: dl.tags,
+      clickCount: Math.floor(Math.random() * 500) + 100,
+      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 7).toISOString(),
       deleted: false,
       enabled: true,
+      tags: ['social', 'profile'],
     });
   });
 
-  // Seed rich analytics (30 days)
-  const countries = ['US', 'IN', 'UK', 'DE', 'JP', 'BR', 'CA', 'AU', 'FR', 'KR'];
-  const devices = ['desktop', 'mobile', 'tablet'];
-  const browsers = ['Chrome', 'Safari', 'Firefox', 'Edge'];
-  const referrers = ['twitter.com', 'facebook.com', 'linkedin.com', 'direct', 'google.com', 'reddit.com'];
-
-  for (let day = 0; day < 30; day++) {
-    const eventsPerDay = Math.floor(Math.random() * 30) + 10;
-    for (let j = 0; j < eventsPerDay; j++) {
-      const link = demoLinks[Math.floor(Math.random() * demoLinks.length)];
-      globalStore.__neonshort_analytics.push({
-        id: `analytics-${day}-${j}`,
-        linkId: link.shortId,
-        timestamp: new Date(Date.now() - day * 86400000 - Math.random() * 86400000).toISOString(),
-        country: countries[Math.floor(Math.random() * countries.length)],
-        device: devices[Math.floor(Math.random() * devices.length)],
-        browser: browsers[Math.floor(Math.random() * browsers.length)],
-        referrer: referrers[Math.floor(Math.random() * referrers.length)],
+  // Seed analytics for the last 30 days
+  for (let i = 0; i < 30; i++) {
+    const day = new Date(Date.now() - 1000 * 60 * 60 * 24 * i);
+    const count = Math.floor(Math.random() * 50) + 10;
+    for (let j = 0; j < count; j++) {
+      globalStore.__vynkify_analytics.push({
+        id: uuidv4(),
+        linkId: demoLinks[Math.floor(Math.random() * demoLinks.length)].shortId,
+        timestamp: day.toISOString(),
+        country: ['US', 'IN', 'UK', 'DE', 'JP', 'CA'][Math.floor(Math.random() * 6)],
+        device: ['desktop', 'mobile', 'tablet'][Math.floor(Math.random() * 3)],
+        browser: ['Chrome', 'Safari', 'Firefox', 'Edge'][Math.floor(Math.random() * 4)],
+        referrer: ['direct', 'google.com', 'twitter.com', 'linkedin.com', 'producthunt.com'][Math.floor(Math.random() * 5)],
       });
     }
   }
 
-  // Create demo session
-  globalStore.__neonshort_sessions.set('demo-token', demoUserId);
+  globalStore.__vynkify_sessions.set('demo-token', demoUserId);
 }
 
-export const users: Map<string, User> = globalStore.__neonshort_users;
-export const links: Map<string, Link> = globalStore.__neonshort_links;
-export const analytics: AnalyticsEvent[] = globalStore.__neonshort_analytics;
-export const sessions: Map<string, string> = globalStore.__neonshort_sessions;
-
-export function generateShortId(): string {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  for (let i = 0; i < 6; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
+export const users: Map<string, User> = globalStore.__vynkify_users;
+export const links: Map<string, Link> = globalStore.__vynkify_links;
+export const analytics: AnalyticsEvent[] = globalStore.__vynkify_analytics;
+export const sessions: Map<string, string> = globalStore.__vynkify_sessions;
 
 export function getUserFromToken(token: string): User | null {
   const userId = sessions.get(token);
   if (!userId) return null;
-  const allUsers = Array.from(users.values());
-  for (let i = 0; i < allUsers.length; i++) {
-    if (allUsers[i].id === userId) return allUsers[i];
-  }
-  return null;
+  return users.get(userId) || null;
+}
+
+export function generateShortId() {
+  return Math.random().toString(36).substring(2, 8);
 }

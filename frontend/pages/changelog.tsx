@@ -1,40 +1,55 @@
 import { motion } from 'framer-motion';
 
-const entries = [
-  { date: 'Apr 20, 2026', version: 'v2.0', title: 'Complete Platform Rebuild', changes: ['Full-stack Next.js architecture', 'Premium glassmorphism UI', 'In-app analytics dashboard', 'QR code generation', 'Link search, tags & filtering', 'UTM builder integration', 'Bulk link creation', 'CSV export', 'Custom 404 page', 'About, Terms, Changelog pages'] },
-  { date: 'Apr 19, 2026', version: 'v1.5', title: 'Enterprise Features', changes: ['Advanced analytics pipeline', 'Link-in-Bio builder', 'API key management', 'Campaign tracking'] },
-  { date: 'Apr 18, 2026', version: 'v1.0', title: 'Initial Launch', changes: ['URL shortening', 'Basic analytics', 'User authentication', 'Dashboard', 'Pricing page'] },
+const updates = [
+  {
+    version: '1.0.0',
+    date: 'April 20, 2026',
+    title: 'Initial Production Release',
+    changes: [
+      'Official Vynkify Branding Launch',
+      'Advanced Link Creation with UTM & Tags',
+      'Real-time Analytics Dashboard',
+      'Google Authentication Integration',
+      'Password Protected Links',
+      'QR Code Generation Engine'
+    ]
+  }
 ];
 
 export default function Changelog() {
   return (
-    <main className="min-h-screen py-24 px-4 relative">
-      <div className="orb orb-cyan w-[400px] h-[400px] -top-20 -left-40" />
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto relative z-10">
-        <h1 className="text-4xl sm:text-5xl font-bold font-heading mb-4">
-          <span className="gradient-text">Changelog</span>
-        </h1>
-        <p className="text-[#a5a0c8] mb-12">See what&apos;s new in NeonShort</p>
-        <div className="space-y-8">
-          {entries.map((entry, i) => (
-            <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.15 }} className="card relative">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 rounded-full bg-[#7f5fff]/15 text-[#7f5fff] text-xs font-bold">{entry.version}</span>
-                <span className="text-sm text-[#a5a0c8]">{entry.date}</span>
+    <main className="min-h-screen pt-32 pb-24 px-4 relative overflow-hidden">
+      <div className="orb orb-cyan w-[600px] h-[600px] -top-20 -left-20 opacity-30" />
+
+      <div className="max-w-3xl mx-auto relative z-10">
+        <h1 className="text-4xl font-bold font-heading mb-2">Changelog</h1>
+        <p className="text-[#a5a0c8] mb-12">See what&apos;s new in Vynkify</p>
+
+        <div className="space-y-12">
+          {updates.map((update, i) => (
+            <motion.div
+              key={update.version}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="relative pl-8 border-l border-[#7f5fff]/20"
+            >
+              <div className="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-[#7f5fff] shadow-[0_0_15px_rgba(127,95,255,0.5)]" />
+              <div className="mb-2">
+                <span className="text-xs font-bold text-[#7f5fff] uppercase tracking-widest">{update.date}</span>
+                <h2 className="text-2xl font-bold text-white mt-1">v{update.version} — {update.title}</h2>
               </div>
-              <h2 className="text-xl font-bold text-white mb-3">{entry.title}</h2>
               <ul className="space-y-2">
-                {entry.changes.map((change, j) => (
-                  <li key={j} className="flex items-start gap-2 text-sm text-[#a5a0c8]">
-                    <span className="text-green-400 mt-0.5">✓</span>
-                    {change}
+                {update.changes.map((change, j) => (
+                  <li key={j} className="text-[#a5a0c8] flex items-center gap-2">
+                    <span className="text-[#00e6ff]">▹</span> {change}
                   </li>
                 ))}
               </ul>
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </main>
   );
 }
