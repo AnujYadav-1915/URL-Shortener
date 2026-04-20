@@ -1,5 +1,5 @@
 {
-  "name": "url-shortener-frontend",
+  "name": "neonshort",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@shadcn/ui": "latest",
     "@types/node": "*",
     "@types/react": "*",
     "framer-motion": "^11.0.0",
@@ -17,13 +16,14 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recharts": "^2.8.0",
-    "tailwindcss": "^3.4.0",
-    "zod": "^3.22.0",
-    "qrcode.react": "^3.1.0"
+    "sonner": "^1.4.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0",
-    "typescript": "^5.0.0"
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.0",
+    "@types/uuid": "^9.0.0"
   }
 }

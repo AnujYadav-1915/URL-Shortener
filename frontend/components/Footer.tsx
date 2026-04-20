@@ -1,7 +1,86 @@
+import Link from 'next/link';
+
+const footerLinks = {
+  Product: [
+    { label: 'URL Shortener', href: '/' },
+    { label: 'QR Codes', href: '/dashboard' },
+    { label: 'Analytics', href: '/dashboard' },
+    { label: 'Pricing', href: '/pricing' },
+  ],
+  Company: [
+    { label: 'About', href: '/' },
+    { label: 'Blog', href: '/' },
+    { label: 'Careers', href: '/' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  Legal: [
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/privacy' },
+    { label: 'Cookie Policy', href: '/privacy' },
+  ],
+};
+
 export default function Footer() {
   return (
-    <footer className="w-full py-6 px-8 bg-[#232046] bg-opacity-90 text-center text-sm mt-16">
-      <span>© {new Date().getFullYear()} NeonShort. All rights reserved. | <a href="/privacy" className="underline">Privacy Policy</a></span>
+    <footer className="relative mt-32 border-t border-[#7f5fff]/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">⚡</span>
+              <span className="text-lg font-bold font-heading">
+                <span className="gradient-text">Neon</span>
+                <span className="text-white">Short</span>
+              </span>
+            </div>
+            <p className="text-sm text-[#a5a0c8] leading-relaxed mb-6">
+              The fastest, most beautiful URL shortener for modern teams and creators.
+            </p>
+            {/* Social Icons */}
+            <div className="flex gap-3">
+              {['𝕏', 'in', 'GH'].map((icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200"
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link Columns */}
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
+              <ul className="space-y-3">
+                {links.map(link => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[#a5a0c8] hover:text-white transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-[#7f5fff]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-[#a5a0c8]">
+            © {new Date().getFullYear()} NeonShort. All rights reserved.
+          </p>
+          <p className="text-xs text-[#a5a0c8]">
+            Made with 💜 for the internet
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
