@@ -1,61 +1,63 @@
 # URL Shortener
 
-This project is a full-stack URL shortener built with a Next.js frontend and an Express backend.
+This is a full-stack URL shortener built with a separate frontend and backend.
 
-I built it to work through the backend and product design problems behind a link-shortening service: generating short identifiers, handling redirects efficiently, supporting custom aliases, and tracking basic analytics in a way that is still easy to reason about as a solo project.
+I built it to work through the practical problems behind a link-shortening product: generating short IDs, handling redirects cleanly, supporting custom aliases, and exposing simple analytics through a dashboard instead of treating the project as just a backend API demo.
 
 ## What it does
 
-The application currently focuses on these workflows:
+The project currently supports these core workflows:
 
-- Create shortened URLs from long links
-- Support custom aliases
-- Redirect users from short links to original URLs
-- Track basic click analytics
-- Generate QR codes for shortened links
-- Manage links through a frontend dashboard
+- Create shortened links from long URLs
+- Use custom aliases for links
+- Redirect short URLs to their original destination
+- View basic analytics for created links
+- Manage links from a frontend dashboard
+- Generate QR codes for shortened URLs
 
-The goal was to build a practical end-to-end product, not a Bitly-scale clone.
-
-## Tech stack
-
-- **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, TypeScript
-- **Caching / performance:** Redis
-- **Infrastructure:** Docker, Docker Compose, GitHub Actions
-
-If your backend uses one specific database ORM, update this section to name it exactly instead of keeping it generic.
+The goal was to build a complete, understandable product flow from UI to API, not to imitate Bitly at production scale.
 
 ## Project structure
 
-The repository is split into two main applications:
+The repository is organized into a few main parts:
 
-- `frontend/` – Next.js web interface
-- `backend/` – Express API server
-- `docs/` – setup notes and supporting documentation
+- `frontend/` – user-facing web app
+- `backend/` – API server and redirect logic
+- `docs/` – supporting setup and implementation notes
+
+This separation made it easier to work on product flows and backend logic independently.
+
+## Tech stack
+
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express, TypeScript
+- **Caching / performance layer:** Redis
+- **Infrastructure / tooling:** Docker, Docker Compose, GitHub Actions
+
+If you later want this README to be even more exact, you should replace any stack item here with the exact package or ORM used in the backend once you verify it from `backend/package.json`.
 
 ## Main features
 
-- URL shortening with custom aliases
-- Link editing and management
-- Redirect handling
+- Short link creation
+- Custom aliases
+- Link redirection
 - Basic analytics
+- Dashboard-based link management
 - QR code generation
-- Redis-backed caching
 - Docker-based local setup
 
 ## Why I built it this way
 
-I wanted to keep the frontend and backend separated so each side of the system stayed easier to reason about.
+I wanted the frontend and backend to stay separate so the project would be easier to reason about and extend.
 
-- **Next.js** handles the dashboard and user-facing workflows.
-- **Express** keeps the API layer simple and explicit.
-- **Redis** helps reduce repeated lookup cost for hot links.
-- **Docker** makes local setup more repeatable and closer to deployment conditions.
+- The **frontend** handles the dashboard and link management experience.
+- The **backend** is responsible for redirects, link operations, and analytics-related logic.
+- **Redis** is used to reduce repeated lookups for frequently accessed links.
+- **Docker** makes the local environment easier to run consistently.
 
 ## Running with Docker
 
-Start the full stack with Docker Compose:
+You can start the full stack with Docker Compose:
 
 ```bash
 docker-compose up -d
@@ -86,28 +88,28 @@ npm run dev
 
 ## Environment and setup notes
 
-Check the backend and frontend folders for their own package configuration and environment needs.
+Check the `frontend/` and `backend/` folders for their own environment variables and package configuration.
 
-If you are running without Docker, make sure the required backend services are available locally before starting the app.
+If you are running the project without Docker, make sure any required backend services are available locally before starting the app.
 
 ## Limitations
 
-A few parts of the project are still evolving:
+A few parts of the project are intentionally simple right now:
 
-- Analytics are intentionally basic
-- The product is not designed for large-scale multi-tenant usage
-- Operational concerns like observability and deeper abuse protection can be improved further
-- The README should only claim features that are actually implemented in `frontend/` and `backend/`
+- Analytics are basic and focused on core usage data
+- The project is not designed for multi-tenant or very large-scale deployment
+- Some operational concerns like observability, abuse protection, and deeper validation can still be improved
+- The README is intentionally limited to features that are visible in the current codebase and repo structure
 
 ## What I want to improve next
 
 Some natural next steps for this project are:
 
-- stronger analytics breakdowns
-- cleaner rate limiting and abuse protection
-- better validation and error handling
-- improved dashboard UX
-- clearer deployment documentation for frontend and backend separately
+- Better analytics breakdowns
+- Stronger rate limiting and abuse protection
+- Clearer validation and error handling
+- Better dashboard UX
+- More detailed deployment documentation for frontend and backend separately
 
 ## Live project
 
@@ -116,4 +118,4 @@ Some natural next steps for this project are:
 
 ## Notes
 
-This project was built to explore the practical backend tradeoffs behind URL shortening: short ID generation, redirect flow, caching, and analytics. The emphasis was on building a complete working system with a dashboard and backend API, while keeping the architecture understandable for a solo developer project.
+This project was built to understand the backend tradeoffs behind URL shortening while still shipping a usable frontend. The main value for me was learning how link generation, redirects, caching, and dashboard workflows fit together in one product.
