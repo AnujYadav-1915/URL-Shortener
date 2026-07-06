@@ -1,50 +1,52 @@
-# URL Shortener
+# Vynkify - URL Shortener
 
-A full-stack URL shortener application built with Next.js and Express.
+A responsive URL shortener dashboard built to demonstrate modern frontend practices using Next.js and Tailwind CSS. 
+
+For the purposes of this demonstration and easy local setup, the backend and database layer are mocked using an in-memory store. This allows reviewers to run and test the complete application flow without configuring external databases.
 
 ## Tech Stack
-- **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, TypeScript
-- **Database:** PostgreSQL (with Prisma/TypeORM), Redis
-- **Infrastructure:** Docker, GitHub Actions
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS, Framer Motion
+* **Components:** Radix UI / Shadcn UI concepts
+* **Charts:** Recharts
+* **Storage:** In-memory local mock store (no external database required)
 
 ## Features
-- URL shortening with custom alias support
-- Link management (expiry, editing, soft delete)
-- Click analytics and QR code generation
-- Redis-backed caching and rate limiting
-- User authentication and role-based access control
+* **URL Management:** Create, view, and manage shortened URLs through a clean dashboard interface.
+* **Mock Analytics:** Simulated tracking of clicks, device types, referrers, and geographic data.
+* **Authentication Flow:** Simulated user authentication and session management.
+* **Zero-Config Setup:** Runs entirely within Next.js without requiring Docker, PostgreSQL, or Redis.
 
-## Structure
-- `/frontend` — Next.js web interface
-- `/backend` — Express API server
+## Local Setup Instructions
 
-## Setup Instructions
+Since the application uses an in-memory store, getting started is extremely quick.
 
-### Prerequisites
-- Docker and Docker Compose
-- Node.js (v18+)
-- PostgreSQL (if running without Docker)
-- Redis (if running without Docker)
-
-### Running with Docker (Recommended)
-1. Clone the repository
-2. Start the services:
+1. **Clone the repository:**
    ```bash
-   docker-compose up -d
+   git clone https://github.com/AnujYadav-1915/URL-Shortener.git
+   cd URL-Shortener
    ```
-3. The frontend will be available at `http://localhost:3000` and backend at `http://localhost:8000`.
 
-### Local Development Setup
-1. **Backend:**
-   ```bash
-   cd backend
-   npm install
-   npm run dev
-   ```
-2. **Frontend:**
+2. **Navigate to the frontend directory:**
    ```bash
    cd frontend
+   ```
+
+3. **Install dependencies:**
+   ```bash
    npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
    npm run dev
    ```
+
+5. **Open the application:**
+   Visit `http://localhost:3000` in your browser. You can log in with any mock credentials (or use the pre-seeded demo user).
+
+## Project Structure
+* `frontend/pages/` - Next.js page routes and API routes (`/api/*`).
+* `frontend/components/` - Reusable UI components.
+* `frontend/lib/store.ts` - The in-memory mock database that powers the application logic.
