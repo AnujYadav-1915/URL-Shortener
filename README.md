@@ -8,12 +8,12 @@ I built it to work through the practical problems behind a link-shortening produ
 
 The project currently supports these core workflows:
 
-* Create shortened links from long URLs
-* Use custom aliases for links
-* Redirect short URLs to their original destination
-* View basic analytics for created links
-* Manage links from a frontend dashboard
-* Generate QR codes for shortened URLs
+- Create shortened links from long URLs
+- Use custom aliases for links
+- Redirect short URLs to their original destination
+- View basic analytics for created links
+- Manage links from a frontend dashboard
+- Generate QR codes for shortened URLs
 
 The goal was to build a complete, understandable product flow from UI to API.
 
@@ -21,66 +21,60 @@ The goal was to build a complete, understandable product flow from UI to API.
 
 The repository is organized into a few main parts:
 
-* `frontend/` – The entire application, including the Next.js UI, the API routes, and the in-memory mock store (`lib/store.ts`).
-* `docs/` – supporting setup and implementation notes
+- `frontend/` – The entire application, including the Next.js UI, the API routes, and the in-memory mock store (`lib/store.ts`).
+- `docs/` – supporting setup and implementation notes
 
 This structure keeps the focus entirely on the frontend product flow and mock data layer.
 
 ## Tech stack
 
-* **Frontend:** Next.js, TypeScript, Tailwind CSS
-* **Backend:** Node.js (Mocked in-memory store in `frontend/lib/store.ts` for quick demonstration without external dependencies)
-* **Database:** None (In-memory store)
-* **ORM:** None
-* **Infrastructure / tooling:** Docker, Docker Compose, GitHub Actions
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
+- **Backend:** Node.js (Mocked in-memory store in `frontend/lib/store.ts` for quick demonstration without external dependencies)
+- **Database:** None (In-memory store)
+- **ORM:** None
+- **Infrastructure / tooling:** Docker, Docker Compose, GitHub Actions
 
 ## Main features
 
-* Short link creation
-* Custom aliases
-* Link redirection
-* Basic analytics
-* Dashboard-based link management
-* QR code generation
-* Docker-based local setup
+- Short link creation
+- Custom aliases
+- Link redirection
+- Basic analytics
+- Dashboard-based link management
+- QR code generation
+- Docker-based local setup
 
 ## Running with Docker
 
-You can start the full stack with Docker Compose:
-
-```bash
-docker-compose up -d
-```
+You can start the full stack with Docker Compose: `docker-compose up -d`
 
 The app will be available at `http://localhost:3000`.
 
 ## Running locally without Docker
 
-You can run the frontend development server directly:
+You can run the frontend development server directly by navigating to the frontend folder and running the install and dev commands:
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+`cd frontend`
+`npm install`
+`npm run dev`
 
 ## Limitations
 
 A few parts of the project are intentionally simple right now:
 
-* Analytics are basic and focused on core usage data.
-* The project uses an in-memory datastore, so it is not designed for multi-tenant or very large-scale deployment.
-* Some operational concerns like observability, abuse protection, and deeper validation can still be improved.
+- Analytics are basic and focused on core usage data.
+- The project uses an in-memory datastore, so it is not designed for multi-tenant or very large-scale deployment.
+- Some operational concerns like observability, abuse protection, and deeper validation can still be improved.
 
 ## What I want to improve next
 
 Some natural next steps for this project are:
 
-* Better analytics breakdowns
-* Stronger rate limiting and abuse protection
-* Clearer validation and error handling
-* Better dashboard UX
-* Integrating a persistent Database (e.g. PostgreSQL) and ORM (e.g. Prisma) instead of the mock memory store.
+- Better analytics breakdowns
+- Stronger rate limiting and abuse protection
+- Clearer validation and error handling
+- Better dashboard UX
+- Integrating a persistent Database (e.g. PostgreSQL) and ORM (e.g. Prisma) instead of the mock memory store.
 
 ## Live project
 
