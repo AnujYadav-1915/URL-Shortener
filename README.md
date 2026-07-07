@@ -46,7 +46,11 @@ This structure keeps the focus entirely on the frontend product flow and mock da
 
 ## Running with Docker
 
-You can start the full stack with Docker Compose: `docker-compose up -d`
+You can start the full stack with Docker Compose:
+
+```bash
+docker-compose up -d
+```
 
 The app will be available at `http://localhost:3000`.
 
@@ -54,9 +58,11 @@ The app will be available at `http://localhost:3000`.
 
 You can run the frontend development server directly by navigating to the frontend folder and running the install and dev commands:
 
-`cd frontend`
-`npm install`
-`npm run dev`
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## Limitations
 
