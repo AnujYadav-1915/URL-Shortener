@@ -21,11 +21,10 @@ The goal was to build a complete, understandable product flow from UI to API.
 
 The repository is organized into a few main parts:
 
-* `frontend/` – user-facing web app (Next.js)
-* `backend/` – backend directory structure (API logic is mocked in-memory for easy local setup)
+* `frontend/` – The entire application, including the Next.js UI, the API routes, and the in-memory mock store (`lib/store.ts`).
 * `docs/` – supporting setup and implementation notes
 
-This separation makes it easier to work on product flows and backend logic independently.
+This structure keeps the focus entirely on the frontend product flow and mock data layer.
 
 ## Tech stack
 
