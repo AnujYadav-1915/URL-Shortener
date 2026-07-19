@@ -448,6 +448,28 @@ export default function Dashboard() {
             </motion.div>
           </motion.div>
         )}
+        
+        {showEditModal && editingLink && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#0a051e]/90 backdrop-blur-xl z-[100] flex items-center justify-center p-4 overflow-y-auto" onClick={() => { setShowEditModal(false); setEditingLink(null); }}>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="card !p-10 w-full max-w-xl my-8 relative" onClick={e => e.stopPropagation()}>
+              <h2 className="text-3xl font-bold font-heading mb-2">Edit Link</h2>
+              <form onSubmit={handleUpdateLink} className="space-y-6">
+                <div>
+                  <label className="text-xs text-[#a5a0c8] font-bold uppercase tracking-widest mb-2 block">Destination URL *</label>
+                  <input type="url" required placeholder="https://example.com" className="input-field !py-4" value={newUrl} onChange={e => setNewUrl(e.target.value)} />
+                </div>
+                <div>
+                  <label className="text-xs text-[#a5a0c8] font-bold uppercase tracking-widest mb-2 block">Tags (comma separated)</label>
+                  <input type="text" placeholder="marketing, social" className="input-field" value={newTags} onChange={e => setNewTags(e.target.value)} />
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <button type="button" onClick={() => { setShowEditModal(false); setEditingLink(null); }} className="btn-secondary flex-1 !py-4 text-sm !rounded-2xl">Cancel</button>
+                  <button type="submit" disabled={creating} className="btn-primary flex-1 !py-4 text-sm !rounded-2xl shadow-xl shadow-[#7f5fff]/20">Save Changes</button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </main>
   );
