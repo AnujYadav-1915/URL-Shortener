@@ -44,11 +44,11 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-4 group">
             <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#7f5fff] to-[#00e6ff] rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#7f5fff] to-[#00e6ff] rounded-theme-card blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
               <img src="/logo.png" alt="Vynkify Logo" className="w-12 h-12 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             </div>
             <span className="text-2xl font-black font-heading tracking-tight">
-              <span className="text-slate-900">Vynkify</span>
+              <span className="text-skin-text">Vynkify</span>
             </span>
           </Link>
 
@@ -58,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-bold uppercase tracking-widest transition-all duration-200 ${
+                className={`text-sm font-bold font-heading uppercase tracking-widest transition-all duration-200 ${
                   router.pathname === link.href ? 'text-[#7f5fff] border-b-2 border-[#7f5fff] pb-1' : 'text-[#a5a0c8] hover:text-white'
                 }`}
               >
@@ -70,15 +70,15 @@ export default function Navbar() {
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-6">
             {user ? (
-              <Link href="/dashboard" className="btn-primary !py-3 !px-8 text-xs font-bold uppercase tracking-widest flex items-center gap-2 !rounded-xl">
+              <Link href="/dashboard" className="btn-primary !py-3 !px-8 text-xs font-bold font-heading uppercase tracking-widest flex items-center gap-2 !rounded-xl">
                 Dashboard <span className="opacity-50">→</span>
               </Link>
             ) : (
               <>
-                <Link href="/login" className="text-xs font-bold uppercase tracking-widest text-[#a5a0c8] hover:text-white transition-colors">
+                <Link href="/login" className="text-xs font-bold font-heading uppercase tracking-widest text-[#a5a0c8] hover:text-white transition-colors">
                   Login
                 </Link>
-                <Link href="/signup" className="btn-primary !py-3 !px-8 text-xs font-bold uppercase tracking-widest !rounded-xl shadow-lg shadow-[#7f5fff]/20">
+                <Link href="/signup" className="btn-primary !py-3 !px-8 text-xs font-bold font-heading uppercase tracking-widest !rounded-xl shadow-lg shadow-[#7f5fff]/20">
                   Get Started
                 </Link>
               </>
@@ -88,7 +88,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 rounded-2xl bg-white/5 text-white hover:bg-white/10 transition-all"
+            className="md:hidden p-3 rounded-theme-card bg-skin-surface text-white hover:bg-white/10 transition-all"
           >
             {isMobileMenuOpen ? '✕' : '☰'}
           </button>
@@ -109,7 +109,7 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => handleMobileClick(link.href)}
-                  className="block w-full text-left text-2xl font-bold text-[#a5a0c8] hover:text-white"
+                  className="block w-full text-left text-2xl font-bold font-heading text-[#a5a0c8] hover:text-white"
                 >
                   {link.label}
                 </button>

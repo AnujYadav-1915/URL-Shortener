@@ -72,15 +72,15 @@ export default function Home() {
             <img src="/logo.png" alt="Vynkify Logo" className="w-32 h-32 mx-auto relative z-10" />
           </div>
           
-          <h1 className="text-5xl sm:text-7xl font-black font-heading mb-4 tracking-tighter leading-none text-slate-900">
+          <h1 className="text-5xl sm:text-7xl font-black font-heading mb-4 tracking-tighter leading-none text-skin-text">
             Professional Link Management
           </h1>
 
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-600 mb-8 font-heading">
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-skin-muted mb-8 font-heading">
             Shorten Links. Analyze Traffic.
           </h2>
 
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg text-skin-muted max-w-2xl mx-auto mb-10 leading-relaxed">
             A fast, secure, and reliable platform for branded links, real-time analytics, and QR codes.
           </p>
         </motion.div>
@@ -93,19 +93,19 @@ export default function Home() {
           className="max-w-2xl mx-auto mb-16"
         >
           <form onSubmit={handleQuickShorten} className="relative group">
-            <div className="relative flex p-2 bg-white border border-slate-200 rounded-2xl shadow-sm">
+            <div className="relative flex p-2 bg-white border border-skin-border rounded-theme-card shadow-theme">
               <input
                 type="url"
                 required
                 placeholder="Paste your long link here..."
-                className="flex-1 bg-transparent border-none text-slate-900 px-4 focus:ring-0 text-lg placeholder:text-slate-400"
+                className="flex-1 bg-transparent border-none text-skin-text px-4 focus:ring-0 text-lg placeholder:text-slate-400"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
               />
               <button 
                 type="submit" 
                 disabled={loading}
-                className="btn-primary !py-3 !px-8 !rounded-xl text-lg font-bold"
+                className="btn-primary !py-3 !px-8 !rounded-xl text-lg font-bold font-heading"
               >
                 {loading ? 'Shortening...' : 'Shorten Link'}
               </button>
@@ -116,9 +116,9 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="mt-6 p-4 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-between gap-4"
+              className="mt-6 p-4 rounded-theme-card bg-blue-50 border border-blue-100 flex items-center justify-between gap-4"
             >
-              <p className="text-blue-700 font-mono font-bold truncate">{shortUrl}</p>
+              <p className="text-blue-700 font-mono font-bold font-heading truncate">{shortUrl}</p>
               <button
                 onClick={() => { navigator.clipboard.writeText(shortUrl); toast.success('Copied!'); }}
                 className="btn-secondary !py-2 !px-4 text-xs whitespace-nowrap"
@@ -131,17 +131,17 @@ export default function Home() {
       </section>
 
       {/* WHY VYNKIFY SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-skin-border">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading mb-6 text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading mb-6 text-skin-text">
               Why use Vynkify?
             </h2>
-            <p className="text-lg text-slate-500 mb-8 leading-relaxed">
+            <p className="text-lg text-skin-muted mb-8 leading-relaxed">
               Basic shortening is just the start. Vynkify gives you total control over your digital footprint.
             </p>
             <ul className="space-y-4">
@@ -153,11 +153,11 @@ export default function Home() {
               ].map((item, i) => (
                 <li key={i} className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                    <span className="text-blue-600 text-sm">✓</span>
+                    <span className="text-skin-primary text-sm">✓</span>
                   </div>
                   <div>
-                    <h4 className="text-slate-900 font-bold text-sm">{item.title}</h4>
-                    <p className="text-slate-500 text-xs mt-0.5">{item.desc}</p>
+                    <h4 className="text-skin-text font-bold font-heading text-sm">{item.title}</h4>
+                    <p className="text-skin-muted text-xs mt-0.5">{item.desc}</p>
                   </div>
                 </li>
               ))}
@@ -172,7 +172,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="card !p-0 overflow-hidden shadow-lg border-slate-200">
+            <div className="card !p-0 overflow-hidden shadow-lg border-skin-border">
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Dashboard Preview" className="w-full h-auto" />
             </div>
           </motion.div>
@@ -180,15 +180,15 @@ export default function Home() {
       </section>
 
       {/* MEET THE FOUNDER SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-slate-200">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-skin-border">
         <div className="card !p-12 relative overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center relative z-10">
             <div className="flex flex-col items-center text-center">
-              <div className="w-48 h-48 rounded-3xl overflow-hidden mb-6 border border-slate-200 shadow-sm">
+              <div className="w-48 h-48 rounded-3xl overflow-hidden mb-6 border border-skin-border shadow-theme">
                 <img src="https://avatars.githubusercontent.com/u/105439818?v=4" alt={founder.name} className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-2xl font-bold font-heading text-slate-900">{founder.name}</h3>
-              <p className="text-blue-600 font-medium text-sm mb-4 uppercase tracking-widest">{founder.role}</p>
+              <h3 className="text-2xl font-bold font-heading text-skin-text">{founder.name}</h3>
+              <p className="text-skin-primary font-medium text-sm mb-4 uppercase tracking-widest">{founder.role}</p>
               <div className="flex flex-wrap justify-center gap-3">
                 {founder.links.map((link, i) => (
                   <a 
@@ -196,7 +196,7 @@ export default function Home() {
                     href={link.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-sm font-bold text-slate-500 hover:bg-blue-600 hover:text-white transition-all duration-300"
+                    className="w-10 h-10 rounded-theme-card bg-skin-surface flex items-center justify-center text-sm font-bold font-heading text-skin-muted hover:bg-blue-600 hover:text-white transition-all duration-300"
                     title={link.platform}
                   >
                     {link.icon}
@@ -206,26 +206,26 @@ export default function Home() {
             </div>
             <div className="md:col-span-2">
               <div className="mb-6">
-                <span className="text-4xl text-blue-600 font-serif leading-none">“</span>
-                <p className="text-2xl font-medium text-slate-600 italic leading-relaxed">
+                <span className="text-4xl text-skin-primary font-serif leading-none">“</span>
+                <p className="text-2xl font-medium text-skin-muted italic leading-relaxed">
                   {founder.bio}
                 </p>
                 <div className="text-right">
-                  <span className="text-4xl text-blue-600 font-serif leading-none">”</span>
+                  <span className="text-4xl text-skin-primary font-serif leading-none">”</span>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-10 mt-10 border-t border-slate-200 pt-8">
+              <div className="flex flex-wrap gap-10 mt-10 border-t border-skin-border pt-8">
                 <div>
-                  <div className="text-3xl font-bold text-slate-900 mb-1">200+</div>
-                  <div className="text-xs text-slate-500 uppercase tracking-wider">Projects Shipped</div>
+                  <div className="text-3xl font-bold font-heading text-skin-text mb-1">200+</div>
+                  <div className="text-xs text-skin-muted uppercase tracking-wider">Projects Shipped</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-slate-900 mb-1">5k+</div>
-                  <div className="text-xs text-slate-500 uppercase tracking-wider">GitHub Stars</div>
+                  <div className="text-3xl font-bold font-heading text-skin-text mb-1">5k+</div>
+                  <div className="text-xs text-skin-muted uppercase tracking-wider">GitHub Stars</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-slate-900 mb-1">Expert</div>
-                  <div className="text-xs text-slate-500 uppercase tracking-wider">Software Engineer</div>
+                  <div className="text-3xl font-bold font-heading text-skin-text mb-1">Expert</div>
+                  <div className="text-xs text-skin-muted uppercase tracking-wider">Software Engineer</div>
                 </div>
               </div>
             </div>
@@ -241,10 +241,10 @@ export default function Home() {
           viewport={{ once: true }}
           className="card text-center !p-16 relative overflow-hidden"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold font-heading mb-6 relative z-10 leading-tight text-slate-900">
+          <h2 className="text-4xl sm:text-5xl font-bold font-heading mb-6 relative z-10 leading-tight text-skin-text">
             Ready to manage your links?
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 relative z-10 leading-relaxed">
+          <p className="text-lg text-skin-muted max-w-2xl mx-auto mb-10 relative z-10 leading-relaxed">
             Create an account to track analytics and manage your branded short links.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">

@@ -10,7 +10,7 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold font-heading mb-6">About <span className="text-slate-900">Vynkify</span></h1>
+          <h1 className="text-4xl sm:text-5xl font-bold font-heading mb-6">About <span className="text-skin-text">Vynkify</span></h1>
           <div className="card !p-8 sm:!p-12 space-y-6">
             <p className="text-lg text-[#a5a0c8] leading-relaxed text-left">
               Vynkify is a next-generation URL shortener built for modern teams, marketers, and creators who demand more than just short links.

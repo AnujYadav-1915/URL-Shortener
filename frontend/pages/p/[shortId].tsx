@@ -54,7 +54,7 @@ export default function PasswordProtected() {
           </button>
         </form>
         
-        <p className="text-[10px] text-[#a5a0c8]/50 mt-8 uppercase tracking-widest font-bold">
+        <p className="text-[10px] text-[#a5a0c8]/50 mt-8 uppercase tracking-widest font-bold font-heading">
           Secured by Vynkify Engine
         </p>
       </motion.div>

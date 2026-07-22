@@ -28,17 +28,17 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <img src="/logo.png" alt="Vynkify Logo" className="w-8 h-8" />
               <span className="text-xl font-bold font-heading">
-                <span className="text-slate-900">Vynkify</span>
+                <span className="text-skin-text">Vynkify</span>
               </span>
             </div>
-            <p className="text-slate-500 mt-4 text-sm leading-relaxed max-w-xs">
+            <p className="text-skin-muted mt-4 text-sm leading-relaxed max-w-xs">
               A fast, secure, and reliable URL shortener for modern teams.
             </p>
             <div className="flex gap-3">
-              <a href="https://x.com/anujyadav1915" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">𝕏</a>
-              <a href="https://www.linkedin.com/in/anujyadav1915/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">in</a>
-              <a href="https://github.com/AnujYadav-1915" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">GH</a>
-              <a href="https://anujyadav-1915.github.io/updated-portfolio-website/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">PF</a>
+              <a href="https://x.com/anujyadav1915" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-theme bg-skin-surface flex items-center justify-center text-xs font-bold font-heading text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">𝕏</a>
+              <a href="https://www.linkedin.com/in/anujyadav1915/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-theme bg-skin-surface flex items-center justify-center text-xs font-bold font-heading text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">in</a>
+              <a href="https://github.com/AnujYadav-1915" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-theme bg-skin-surface flex items-center justify-center text-xs font-bold font-heading text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">GH</a>
+              <a href="https://anujyadav-1915.github.io/updated-portfolio-website/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-theme bg-skin-surface flex items-center justify-center text-xs font-bold font-heading text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">PF</a>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-[#7f5fff]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Vynkify.</p>
+          <p className="text-xs text-skin-muted">© {new Date().getFullYear()} Vynkify.</p>
           <p className="text-xs text-[#a5a0c8]">
             <a href="mailto:anuj11112003@gmail.com" className="hover:text-white transition-colors">anuj11112003@gmail.com</a>
           </p>

@@ -40,7 +40,7 @@ export default function Account() {
         <div className="card mb-6">
           <h2 className="text-lg font-semibold mb-4">Profile</h2>
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#7f5fff] to-[#00e6ff] flex items-center justify-center text-white text-2xl font-bold">
+            <div className="w-16 h-16 rounded-theme-card bg-gradient-to-br from-[#7f5fff] to-[#00e6ff] flex items-center justify-center text-white text-2xl font-bold font-heading">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -66,7 +66,7 @@ export default function Account() {
         {/* Plan Card */}
         <div className="card mb-6">
           <h2 className="text-lg font-semibold mb-4">Current Plan</h2>
-          <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] mb-4">
+          <div className="flex items-center justify-between p-4 rounded-theme-card bg-white/[0.03] mb-4">
             <div>
               <span className="text-sm font-semibold text-white capitalize">{user?.plan || 'Free'} Plan</span>
               <p className="text-xs text-[#a5a0c8] mt-0.5">25 links/month • Basic analytics</p>
@@ -82,10 +82,10 @@ export default function Account() {
         <div className="card !border-red-500/20">
           <h2 className="text-lg font-semibold mb-4 text-red-400">Danger Zone</h2>
           <div className="flex flex-col sm:flex-row gap-3">
-            <button onClick={handleLogout} className="px-4 py-2.5 text-sm rounded-xl bg-white/5 text-[#a5a0c8] hover:bg-white/10 transition-all flex-1">
+            <button onClick={handleLogout} className="px-4 py-2.5 text-sm rounded-theme-card bg-skin-surface text-[#a5a0c8] hover:bg-white/10 transition-all flex-1">
               Sign Out
             </button>
-            <button onClick={() => toast.error('Account deletion is disabled in demo')} className="px-4 py-2.5 text-sm rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all flex-1">
+            <button onClick={() => toast.error('Account deletion is disabled in demo')} className="px-4 py-2.5 text-sm rounded-theme-card bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all flex-1">
               Delete Account
             </button>
           </div>

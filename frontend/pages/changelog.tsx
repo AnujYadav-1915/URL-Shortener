@@ -35,8 +35,8 @@ export default function Changelog() {
             >
               <div className="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-[#7f5fff] shadow-[0_0_15px_rgba(127,95,255,0.5)]" />
               <div className="mb-2">
-                <span className="text-xs font-bold text-[#7f5fff] uppercase tracking-widest">{update.date}</span>
-                <h2 className="text-2xl font-bold text-white mt-1">v{update.version} — {update.title}</h2>
+                <span className="text-xs font-bold font-heading text-[#7f5fff] uppercase tracking-widest">{update.date}</span>
+                <h2 className="text-2xl font-bold font-heading text-white mt-1">v{update.version} — {update.title}</h2>
               </div>
               <ul className="space-y-2">
                 {update.changes.map((change, j) => (

@@ -7,19 +7,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        neon: {
-          purple: '#7f5fff',
-          cyan: '#00e6ff',
-          pink: '#ff2d95',
-          dark: '#0d0b1a',
-          card: '#1a1735',
-          surface: '#232046',
+        skin: {
+          bg: 'var(--bg-primary)',
+          surface: 'var(--bg-secondary)',
+          card: 'var(--bg-card)',
+          text: 'var(--text-primary)',
+          muted: 'var(--text-secondary)',
+          border: 'var(--border-color)',
+          primary: 'var(--accent-primary)',
+          'primary-hover': 'var(--accent-hover)',
         },
       },
+      borderRadius: {
+        theme: 'var(--btn-radius)',
+        'theme-card': 'var(--card-radius)',
+      },
+      boxShadow: {
+        theme: 'var(--card-shadow)',
+      },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        heading: ['Space Grotesk', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

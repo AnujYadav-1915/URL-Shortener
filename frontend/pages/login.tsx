@@ -64,7 +64,7 @@ export default function Login() {
         <button 
           onClick={handleGoogleLogin}
           disabled={loading}
-          className="w-full py-3 px-4 rounded-xl border border-white/10 bg-white/5 text-white text-sm font-medium flex items-center justify-center gap-3 hover:bg-white/10 transition-all mb-6 group disabled:opacity-50"
+          className="w-full py-3 px-4 rounded-theme-card border border-white/10 bg-skin-surface text-white text-sm font-medium flex items-center justify-center gap-3 hover:bg-white/10 transition-all mb-6 group disabled:opacity-50"
         >
           <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
             <path fill="#EA4335" d="M12.48 10.92v3.28h7.84c-.24 1.84-.92 3.36-2.08 4.48-1.28 1.28-3.28 2.52-6.52 2.52-5.28 0-9.48-4.28-9.48-9.52s4.2-9.52 9.48-9.52c2.88 0 5.04 1.12 6.6 2.6l2.32-2.32C18.44 1.48 15.64 0 12.48 0 5.6 0 0 5.6 0 12.48s5.6 12.48 12.48 12.48c3.72 0 6.52-1.24 8.68-3.48 2.24-2.24 2.92-5.4 2.92-8.08 0-.52-.04-1.04-.12-1.48H12.48z" />

@@ -187,7 +187,7 @@ export default function Dashboard() {
       <main className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-[#7f5fff]/30 border-t-[#7f5fff] rounded-full animate-spin" />
-          <p className="text-slate-500 font-medium animate-pulse">Loading dashboard...</p>
+          <p className="text-skin-muted font-medium animate-pulse">Loading dashboard...</p>
         </div>
       </main>
     );
@@ -200,13 +200,13 @@ export default function Dashboard() {
       <div className="w-full lg:w-64 shrink-0 space-y-6 relative z-10">
         <div className="card !p-4 flex flex-col items-center text-center">
           <img src="/logo.png" alt="Vynkify" className="w-12 h-12 mb-4 drop-shadow-[0_0_8px_rgba(127,95,255,0.2)]" />
-          <div className="flex items-center gap-3 w-full p-2 rounded-xl bg-slate-50 border border-slate-200">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-sm font-bold text-white shadow-sm">
+          <div className="flex items-center gap-3 w-full p-2 rounded-theme-card bg-skin-bg border border-skin-border">
+            <div className="w-10 h-10 rounded-theme-card bg-skin-primary flex items-center justify-center text-sm font-bold font-heading text-white shadow-theme">
               {user?.name?.[0] || 'A'}
             </div>
             <div className="text-left overflow-hidden">
-              <h3 className="text-xs font-bold text-slate-900 truncate w-24">{user?.name}</h3>
-              <p className="text-[9px] text-blue-600 font-bold uppercase tracking-widest">{user?.plan} Plan</p>
+              <h3 className="text-xs font-bold font-heading text-skin-text truncate w-24">{user?.name}</h3>
+              <p className="text-[9px] text-skin-primary font-bold font-heading uppercase tracking-widest">{user?.plan} Plan</p>
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@ export default function Dashboard() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-theme-card text-sm font-medium transition-all duration-200 ${
                 activeTab === tab.id
                   ? 'bg-blue-50 text-blue-600'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
@@ -236,7 +236,7 @@ export default function Dashboard() {
           <div className="pt-2 mt-2 border-t border-white/5">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-200"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-theme-card text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-200"
             >
               Sign Out
             </button>
@@ -249,8 +249,8 @@ export default function Dashboard() {
         {/* Header Stats */}
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold font-heading text-slate-900 capitalize">{activeTab}</h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <h1 className="text-3xl font-bold font-heading text-skin-text capitalize">{activeTab}</h1>
+            <p className="text-sm text-skin-muted mt-1">
               {activeTab === 'overview' && 'Track your performance at a glance'}
               {activeTab === 'links' && `${activeLinks.length} active links found`}
               {activeTab === 'analytics' && 'Detailed audience insights'}
@@ -278,15 +278,15 @@ export default function Dashboard() {
               ].map((stat, i) => (
                 <div key={i} className="card !p-6 flex items-center justify-between group hover:border-blue-200 transition-all">
                   <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">{stat.label}</p>
-                    <h3 className={`text-2xl font-bold ${stat.color}`}>{stat.value}</h3>
+                    <p className="text-xs text-skin-muted font-bold font-heading uppercase tracking-widest mb-1">{stat.label}</p>
+                    <h3 className={`text-2xl font-bold font-heading ${stat.color}`}>{stat.value}</h3>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="card">
-              <h3 className="text-lg font-bold mb-6">Click Trends (Last 30 Days)</h3>
+              <h3 className="text-lg font-bold font-heading mb-6">Click Trends (Last 30 Days)</h3>
               <div className="h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={analytics?.dailyClicks || []}>
@@ -334,19 +334,19 @@ export default function Dashboard() {
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-lg font-mono font-bold text-slate-900">{link.shortId}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-bold uppercase tracking-widest">{link.clickCount} Clicks</span>
+                      <span className="text-lg font-mono font-bold font-heading text-skin-text">{link.shortId}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-skin-surface text-skin-muted font-bold font-heading uppercase tracking-widest">{link.clickCount} Clicks</span>
                       {link.tags?.map(tag => (
-                        <span key={tag} className="text-[9px] px-2 py-0.5 rounded-md bg-blue-50 text-blue-600 border border-blue-100 font-bold uppercase tracking-tighter">#{tag}</span>
+                        <span key={tag} className="text-[9px] px-2 py-0.5 rounded-md bg-blue-50 text-skin-primary border border-blue-100 font-bold font-heading uppercase tracking-tighter">#{tag}</span>
                       ))}
                     </div>
-                    <p className="text-sm text-slate-500 truncate leading-relaxed max-w-xl">{link.url}</p>
+                    <p className="text-sm text-skin-muted truncate leading-relaxed max-w-xl">{link.url}</p>
                     <p className="text-[10px] text-slate-400 mt-2 font-mono uppercase tracking-widest">{new Date(link.createdAt).toDateString()}</p>
                   </div>
                   <div className="flex gap-2 shrink-0">
-                    <button onClick={() => copyLink(link.shortId)} className="p-2 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all text-xs" title="Copy">Copy</button>
-                    <button onClick={() => openEditModal(link)} className="p-2 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all text-xs" title="Edit">Edit</button>
-                    <button onClick={() => setActiveTab('qr')} className="p-2 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all text-xs" title="QR">QR</button>
+                    <button onClick={() => copyLink(link.shortId)} className="p-2 rounded border border-skin-border text-skin-muted hover:bg-slate-50 transition-all text-xs" title="Copy">Copy</button>
+                    <button onClick={() => openEditModal(link)} className="p-2 rounded border border-skin-border text-skin-muted hover:bg-slate-50 transition-all text-xs" title="Edit">Edit</button>
+                    <button onClick={() => setActiveTab('qr')} className="p-2 rounded border border-skin-border text-skin-muted hover:bg-slate-50 transition-all text-xs" title="QR">QR</button>
                     <button onClick={() => deleteLink(link.shortId)} className="p-2 rounded border border-red-100 text-red-600 hover:bg-red-50 transition-all text-xs" title="Delete">Delete</button>
                   </div>
                 </motion.div>
@@ -360,7 +360,7 @@ export default function Dashboard() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="card">
-                <h3 className="text-lg font-bold mb-6">Device Distribution</h3>
+                <h3 className="text-lg font-bold font-heading mb-6">Device Distribution</h3>
                 <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie data={analytics.deviceBreakdown} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} strokeWidth={0}>
@@ -371,7 +371,7 @@ export default function Dashboard() {
                 </ResponsiveContainer>
               </div>
               <div className="card">
-                <h3 className="text-lg font-bold mb-6">Top Geos</h3>
+                <h3 className="text-lg font-bold font-heading mb-6">Top Geos</h3>
                 <ResponsiveContainer width="100%" height={250}>
                   <BarChart data={analytics.countryBreakdown.slice(0, 6)} layout="vertical">
                     <XAxis type="number" hide />
@@ -386,13 +386,13 @@ export default function Dashboard() {
 
         {activeTab === 'domains' && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card !p-12 text-center">
-            <h2 className="text-2xl font-bold mb-4">Branded Domains</h2>
-            <p className="text-slate-500 max-w-md mx-auto mb-10 leading-relaxed">
+            <h2 className="text-2xl font-bold font-heading mb-4">Branded Domains</h2>
+            <p className="text-skin-muted max-w-md mx-auto mb-10 leading-relaxed">
               Connect your own domains to use as your shortening base. 
             </p>
-            <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 mb-8 max-w-lg mx-auto">
-              <p className="text-xs text-blue-600 font-bold uppercase tracking-[0.2em] mb-2">Upgrade Required</p>
-              <h3 className="text-lg font-bold text-slate-900 mb-6">Pro Feature</h3>
+            <div className="p-8 rounded-theme-card bg-skin-bg border border-skin-border mb-8 max-w-lg mx-auto">
+              <p className="text-xs text-skin-primary font-bold font-heading uppercase tracking-[0.2em] mb-2">Upgrade Required</p>
+              <h3 className="text-lg font-bold font-heading text-skin-text mb-6">Pro Feature</h3>
               <button className="btn-primary !py-3 !px-8 text-sm">Upgrade to Pro</button>
             </div>
           </motion.div>
@@ -403,13 +403,13 @@ export default function Dashboard() {
             <div className="card !p-8">
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">Developer API</h3>
-                  <p className="text-sm text-slate-500 mt-1">Integrate our infrastructure into your own apps.</p>
+                  <h3 className="text-xl font-bold font-heading text-skin-text">Developer API</h3>
+                  <p className="text-sm text-skin-muted mt-1">Integrate our infrastructure into your own apps.</p>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-widest border border-green-200">Active</span>
+                <span className="px-3 py-1 rounded-full bg-green-50 text-green-600 text-[10px] font-bold font-heading uppercase tracking-widest border border-green-200">Active</span>
               </div>
               <div className="flex gap-2">
-                <input type="text" readOnly value={apiKey} className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-mono text-slate-900" />
+                <input type="text" readOnly value={apiKey} className="flex-1 bg-white border border-skin-border rounded-theme-card px-4 py-3 text-sm font-mono text-skin-text" />
                 <button onClick={() => { navigator.clipboard.writeText(apiKey); toast.success('API Key Copied'); }} className="btn-secondary !py-3 !px-6 text-sm !rounded-xl">Copy</button>
               </div>
             </div>
@@ -425,7 +425,7 @@ export default function Dashboard() {
               <h2 className="text-3xl font-bold font-heading mb-2">Create Link</h2>
               <form onSubmit={handleCreateLink} className="space-y-6">
                 <div>
-                  <label className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-2 block">Destination URL *</label>
+                  <label className="text-xs text-skin-muted font-bold font-heading uppercase tracking-widest mb-2 block">Destination URL *</label>
                   <input type="url" required placeholder="https://example.com" className="input-field !py-4" value={newUrl} onChange={e => setNewUrl(e.target.value)} />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -447,11 +447,11 @@ export default function Dashboard() {
               <h2 className="text-3xl font-bold font-heading mb-2">Edit Link</h2>
               <form onSubmit={handleUpdateLink} className="space-y-6">
                 <div>
-                  <label className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-2 block">Destination URL *</label>
+                  <label className="text-xs text-skin-muted font-bold font-heading uppercase tracking-widest mb-2 block">Destination URL *</label>
                   <input type="url" required placeholder="https://example.com" className="input-field !py-4" value={newUrl} onChange={e => setNewUrl(e.target.value)} />
                 </div>
                 <div>
-                  <label className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-2 block">Tags (comma separated)</label>
+                  <label className="text-xs text-skin-muted font-bold font-heading uppercase tracking-widest mb-2 block">Tags (comma separated)</label>
                   <input type="text" placeholder="marketing, social" className="input-field" value={newTags} onChange={e => setNewTags(e.target.value)} />
                 </div>
                 <div className="flex gap-4 pt-4">

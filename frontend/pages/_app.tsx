@@ -5,15 +5,17 @@ import Footer from '../components/Footer';
 import { Toaster } from 'sonner';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { ThemeProvider } from '../lib/ThemeContext';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isDashboard = router.pathname.startsWith('/dashboard');
   
   return (
-    <>
+    <ThemeProvider>
       <Head>
-        <title>Vynkify — Lightning-Fast URL Shortener</title>
+        <title>Vynkify — Professional URL Shortener</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Navbar />
@@ -21,18 +23,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
       {!isDashboard && <Footer />}
-      <Toaster 
-        position="bottom-right" 
-        theme="dark"
-        toastOptions={{
-          style: {
-            background: 'rgba(26, 23, 53, 0.95)',
-            border: '1px solid rgba(127, 95, 255, 0.3)',
-            color: '#e2e0f0',
-            backdropFilter: 'blur(20px)',
-          },
-        }}
-      />
-    </>
+      <Toaster position="bottom-right" />
+      <ThemeSwitcher />
+    </ThemeProvider>
   );
 }
