@@ -50,8 +50,6 @@ export default function Signup() {
 
   return (
     <main className="min-h-screen pt-32 pb-24 px-4 flex items-center justify-center relative overflow-hidden">
-      <div className="orb orb-purple w-[600px] h-[600px] -top-20 -left-20" />
-      <div className="orb orb-cyan w-[400px] h-[400px] -bottom-20 -right-20" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

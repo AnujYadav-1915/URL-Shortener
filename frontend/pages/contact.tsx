@@ -17,11 +17,10 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen py-24 px-4 relative">
-      <div className="orb orb-purple w-[400px] h-[400px] -top-20 right-[-100px]" />
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-lg mx-auto relative z-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold font-heading mb-3">Get in <span className="gradient-text">Touch</span></h1>
+          <h1 className="text-4xl font-bold font-heading mb-3">Get in <span className="text-slate-900">Touch</span></h1>
           <p className="text-[#a5a0c8]">Have a question or need help? We&apos;d love to hear from you.</p>
         </div>
 

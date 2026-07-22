@@ -28,11 +28,11 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <img src="/logo.png" alt="Vynkify Logo" className="w-8 h-8" />
               <span className="text-xl font-bold font-heading">
-                <span className="gradient-text">Vynkify</span>
+                <span className="text-slate-900">Vynkify</span>
               </span>
             </div>
-            <p className="text-sm text-[#a5a0c8] leading-relaxed mb-6">
-              Don&apos;t share links. Vynkify them. The fastest, most beautiful URL shortener for modern teams and creators.
+            <p className="text-slate-500 mt-4 text-sm leading-relaxed max-w-xs">
+              A fast, secure, and reliable URL shortener for modern teams.
             </p>
             <div className="flex gap-3">
               <a href="https://x.com/anujyadav1915" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold text-[#a5a0c8] hover:bg-[#7f5fff]/20 hover:text-[#7f5fff] transition-all duration-200">𝕏</a>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-[#7f5fff]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-[#a5a0c8]">© {new Date().getFullYear()} Vynkify. Built by <a href="https://anujyadav-1915.github.io/updated-portfolio-website/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#7f5fff] transition-colors">Anuj Yadav</a></p>
+          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Vynkify.</p>
           <p className="text-xs text-[#a5a0c8]">
             <a href="mailto:anuj11112003@gmail.com" className="hover:text-white transition-colors">anuj11112003@gmail.com</a>
           </p>

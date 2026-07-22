@@ -48,7 +48,7 @@ export default function Navbar() {
               <img src="/logo.png" alt="Vynkify Logo" className="w-12 h-12 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             </div>
             <span className="text-2xl font-black font-heading tracking-tight">
-              <span className="gradient-text">Vynkify</span>
+              <span className="text-slate-900">Vynkify</span>
             </span>
           </Link>
 

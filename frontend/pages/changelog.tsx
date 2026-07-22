@@ -19,7 +19,6 @@ const updates = [
 export default function Changelog() {
   return (
     <main className="min-h-screen pt-32 pb-24 px-4 relative overflow-hidden">
-      <div className="orb orb-cyan w-[600px] h-[600px] -top-20 -left-20 opacity-30" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         <h1 className="text-4xl font-bold font-heading mb-2">Changelog</h1>

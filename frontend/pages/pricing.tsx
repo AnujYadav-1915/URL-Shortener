@@ -61,8 +61,6 @@ const plans = [
 export default function Pricing() {
   return (
     <main className="min-h-screen py-24 px-4 relative">
-      <div className="orb orb-purple w-[500px] h-[500px] -top-40 right-[-200px]" />
-      <div className="orb orb-cyan w-[400px] h-[400px] bottom-20 -left-40" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -70,7 +68,7 @@ export default function Pricing() {
         className="text-center mb-16 relative z-10"
       >
         <h1 className="text-4xl sm:text-5xl font-bold font-heading mb-4">
-          Simple, transparent <span className="gradient-text">pricing</span>
+          Simple, transparent <span className="text-slate-900">pricing</span>
         </h1>
         <p className="text-lg text-[#a5a0c8] max-w-xl mx-auto">
           Start free, scale as you grow. No hidden fees, cancel anytime.
@@ -98,7 +96,7 @@ export default function Pricing() {
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-white mb-2">{plan.name}</h3>
               <div className="flex items-end gap-1">
-                <span className="text-4xl font-extrabold gradient-text">{plan.price}</span>
+                <span className="text-4xl font-extrabold text-slate-900">{plan.price}</span>
                 <span className="text-[#a5a0c8] text-sm mb-1">{plan.period}</span>
               </div>
             </div>
@@ -131,7 +129,7 @@ export default function Pricing() {
         className="max-w-3xl mx-auto mt-24 relative z-10"
       >
         <h2 className="text-2xl font-bold font-heading text-center mb-10">
-          Frequently Asked <span className="gradient-text">Questions</span>
+          Frequently Asked <span className="text-slate-900">Questions</span>
         </h2>
         <div className="space-y-4">
           {[

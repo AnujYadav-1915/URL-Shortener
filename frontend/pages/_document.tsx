@@ -5,9 +5,9 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta charSet="utf-8" />
-        <meta name="description" content="Vynkify — Don't share links. Vynkify them. The fastest, most beautiful URL shortener with deep analytics and branded links." />
-        <meta property="og:title" content="Vynkify — Elite URL Shortening" />
-        <meta property="og:description" content="Shorten Links. Amplify Your Reach. Experience the power of Vynkify." />
+        <meta name="description" content="Vynkify — The fastest, most reliable URL shortener with analytics and branded links." />
+        <meta property="og:title" content="Vynkify — URL Shortening" />
+        <meta property="og:description" content="Shorten Links. Analyze Traffic. Experience Vynkify." />
         <meta property="og:image" content="/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/logo.png" />
