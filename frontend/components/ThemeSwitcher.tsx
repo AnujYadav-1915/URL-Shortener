@@ -13,7 +13,7 @@ export default function ThemeSwitcher() {
   ];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2 p-3 bg-skin-card rounded-theme-card border border-skin-border shadow-theme">
+    <div className="fixed top-24 right-6 z-50 flex flex-col gap-2 p-3 bg-skin-card rounded-theme-card border border-skin-border shadow-theme">
       <p className="text-xs font-bold font-heading text-skin-text mb-1 px-1">Select UI Theme:</p>
       {themes.map((t) => (
         <button
