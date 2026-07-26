@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ============ THEMING ENGINE ============ */
-:root, [data-theme="stripe"] {
+:root {
   --bg-primary: #f8fafc;
   --bg-secondary: #f1f5f9;
   --bg-card: #ffffff;
@@ -19,70 +19,6 @@
   --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   --font-sans: 'Inter';
   --font-heading: 'Inter';
-}
-
-[data-theme="fintech"] {
-  --bg-primary: #f7f5f2;
-  --bg-secondary: #eae6df;
-  --bg-card: #ffffff;
-  --text-primary: #061c27;
-  --text-secondary: #4a5d68;
-  --border-color: #d1cbc1;
-  --accent-primary: #044b36;
-  --accent-hover: #022a1f;
-  --btn-radius: 12px;
-  --card-radius: 16px;
-  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-  --font-sans: 'Inter';
-  --font-heading: 'Merriweather';
-}
-
-[data-theme="brutal"] {
-  --bg-primary: #e6e6e6;
-  --bg-secondary: #cccccc;
-  --bg-card: #ffffff;
-  --text-primary: #000000;
-  --text-secondary: #333333;
-  --border-color: #000000;
-  --accent-primary: #ff4d00;
-  --accent-hover: #cc3d00;
-  --btn-radius: 0px;
-  --card-radius: 0px;
-  --card-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-  --font-sans: 'Inter';
-  --font-heading: 'Space Grotesk';
-}
-
-[data-theme="apple"] {
-  --bg-primary: #f5f5f7;
-  --bg-secondary: #ebebeb;
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --text-primary: #1d1d1f;
-  --text-secondary: #86868b;
-  --border-color: rgba(0, 0, 0, 0.05);
-  --accent-primary: #0066cc;
-  --accent-hover: #0055ab;
-  --btn-radius: 9999px;
-  --card-radius: 20px;
-  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-
-[data-theme="cyber"] {
-  --bg-primary: #050505;
-  --bg-secondary: #111111;
-  --bg-card: #0a0a0a;
-  --text-primary: #ffffff;
-  --text-secondary: #888888;
-  --border-color: #333333;
-  --accent-primary: #00ff41;
-  --accent-hover: #00cc33;
-  --btn-radius: 4px;
-  --card-radius: 4px;
-  --card-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-  --font-sans: 'JetBrains Mono';
-  --font-heading: 'JetBrains Mono';
 }
 
 /* ============ BASE RESET ============ */

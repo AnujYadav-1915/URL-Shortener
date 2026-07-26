@@ -5,15 +5,13 @@ import Footer from '../components/Footer';
 import { Toaster } from 'sonner';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { ThemeProvider } from '../lib/ThemeContext';
-import ThemeSwitcher from '../components/ThemeSwitcher';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isDashboard = router.pathname.startsWith('/dashboard');
   
   return (
-    <ThemeProvider>
+    <>
       <Head>
         <title>Vynkify — Professional URL Shortener</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
       {!isDashboard && <Footer />}
       <Toaster position="bottom-right" />
-      <ThemeSwitcher />
-    </ThemeProvider>
+    </>
   );
 }
